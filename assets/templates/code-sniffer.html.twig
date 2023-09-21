@@ -1,0 +1,12 @@
+<h2 id="codesniffs">PHPCS Report</h2>
+<button id="updates">Update</button>
+<table class="sortable sniffs">
+    {% for row, cells in data %}
+        <tr>
+        {% for cell in cells %}
+            <td>{{ cell }}</td>
+        {% endfor %}
+        </tr>
+    {% endfor %}
+
+</table>

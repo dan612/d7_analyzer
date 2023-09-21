@@ -1,0 +1,28 @@
+<h2 id="tts">Theme Template Summary</h2>
+<table class="sortable">
+    <thead>
+        <th>type</th>
+        <th>count</th>
+    </thead>
+    <tbody>
+        {% for templateType, count in data['counts'] %}
+            <tr>
+                <td><a href="#{{templateType}}">{{ templateType }}</a></td>
+                <td>{{ count }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% for type,templates in data %}
+    {% if type != 'counts' %}
+        <div class="template-group">
+            <h2 id="{{type}}" class="collapsible">{{ type }} <span class="expand">(+)</span></h2>
+            <ul>
+                {% for template in templates %}
+                <li>{{ template }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+{% endfor %}
+<div id="scrolltop"><span class="icon">⬆</span>TOP</div>

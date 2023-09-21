@@ -1,0 +1,36 @@
+{
+    "name": "dan.chadwick/toolshed",
+    "description": "Various tools and things",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "DanChadwick\\Toolshed\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Dan Chadwick",
+            "email": "dan.chadwick@acquia.com"
+        }
+    ],
+    "require": {
+        "symfony/yaml": "^6.2",
+        "guzzlehttp/guzzle": "^7.0",
+        "twig/twig": "^3.7",
+        "symfony/asset": "^6.3",
+        "symfony/process": "^6.3",
+        "symfony/filesystem": "^6.3",
+        "symfony/console": "^6.3"
+    },
+    "require-dev": {
+        "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
+        "squizlabs/php_codesniffer": "3.*",
+        "phpcompatibility/php-compatibility": "*",
+        "drupal/coder": "^8.3"
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    }
+}

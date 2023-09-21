@@ -1,0 +1,154 @@
+body {
+    font-family: 'Nunito Sans', sans-serif;
+    display: none;
+}
+
+html {
+    max-width: 100%;
+    visibility: hidden;
+}
+
+h2 {
+    font-style: italic;
+}
+
+#scrolltop {
+    position: fixed;
+    bottom: 1rem;
+    right: 2rem;
+    background: whitesmoke;
+    padding: 15px;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+#scrolltop:hover {
+    transform: scale(1.1);
+    transition: transform .2s ease-in-out;
+}
+
+span.icon {
+    display: block;
+}
+
+header {
+    border: 2px solid rgb(35, 44, 97);
+    color: rgb(35, 44, 97);
+    padding: 10px;
+    position: relative;
+}
+
+a {
+    color: rgb(35, 44, 97);
+}
+
+a:visited {
+    color: rgb(35, 44, 97);
+}
+
+#navigation {
+    position: absolute;
+    bottom: 0;
+    right: 1rem;
+    margin: 0;
+    list-style-type: none;
+}
+
+.menu-item {
+    display: inline-block;
+    vertical-align: top;
+    text-decoration: none;
+    background: rgb(35, 44, 97);
+    border-radius: 10px 10px 0 0;
+    cursor: pointer;
+    padding: 1rem;
+}
+
+.menu-item:hover {
+    background: whitesmoke;
+    transition: all .5s ease-in-out;
+}
+
+.menu-item:hover a {
+    color: rgb(35, 44, 97) !important;
+    transition: all .5s ease-in-out;
+}
+
+.menu-item a {
+    color: whitesmoke;
+    text-decoration: none;
+}
+
+table.sniffs {
+    display: block;
+    overflow: scroll;
+    width: 100%;
+    height: 500px;
+    margin: auto;
+    font-size: .6rem;
+    border: 2px solid gray;
+}
+
+table.sniffs tbody tr:nth-child(odd) {
+    background: whitesmoke;
+}
+
+table.sniffs thead td {
+    font-size: 1rem;
+    font-weight: 900;
+}
+
+footer {
+    height: 50px;
+    background: rgb(35, 44, 97);
+    margin-top: 50px;
+}
+
+#curtain {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    background: whitesmoke;
+    opacity: .95;
+}
+
+#curtain #loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100px;
+    height: 100px;
+    z-index: 9999
+}
+
+#loader img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+}
+
+.collapsible {
+    cursor: pointer;
+}
+
+.template-group ul {
+    display: none;
+}
+
+.expand {
+    font-weight: 300;
+    font-style: initial;
+    font-size: 1.2rem;
+    color: #b2b1b1;
+}
