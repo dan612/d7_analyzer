@@ -1,4 +1,0 @@
-global_project_path: '/Users/dan.chadwick/Sites/allsides_d7'
-web_root: 'docroot'
-d7_custom_theme: 'allsides' #this needs to be relative to /sites/all/themes
-
