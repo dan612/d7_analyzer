@@ -4,6 +4,7 @@
 if (php_sapi_name() !== 'cli') {
   exit;
 }
+error_reporting(E_ALL & ~E_DEPRECATED);
 require 'vendor/autoload.php';
 
 use D7_analyzer\D7CodebaseAnalysis;
