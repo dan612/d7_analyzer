@@ -14,13 +14,14 @@
         }
     ],
     "require": {
-        "symfony/yaml": "^6.2",
+        "symfony/yaml": "^2.7",
         "guzzlehttp/guzzle": "^7.0",
         "twig/twig": "^3.7",
-        "symfony/asset": "^6.3",
-        "symfony/process": "^6.3",
-        "symfony/filesystem": "^6.3",
-        "symfony/console": "^6.3"
+        "symfony/asset": "^2.7",
+        "symfony/process": "^2.7",
+        "symfony/filesystem": "^2.7",
+        "symfony/console": "^2.7",
+        "drush/drush": "^8"
     },
     "require-dev": {
         "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
