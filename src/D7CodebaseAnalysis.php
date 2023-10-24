@@ -1,10 +1,10 @@
 <?php
 
-namespace DanChadwick\Toolshed;
+namespace D7_analyzer;
 
-use DanChadwick\Toolshed\Theme\D7TemplateExtractor;
-use DanChadwick\Toolshed\Theme\D7ThemeFileScan;
-use DanChadwick\Toolshed\Modules\D7ModuleAnalysis;
+use D7_analyzer\Theme\D7TemplateExtractor;
+use D7_analyzer\Theme\D7ThemeFileScan;
+use D7_analyzer\Modules\D7ModuleAnalysis;
 use Symfony\Component\Yaml\Yaml;
 
 class D7CodebaseAnalysis {

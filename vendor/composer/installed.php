@@ -1,19 +1,19 @@
 <?php return array(
     'root' => array(
-        'name' => 'dan.chadwick/toolshed',
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
-        'reference' => NULL,
+        'name' => 'dan612/d7_analyzer',
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
+        'reference' => '2b916f508a97df32d3a8029c3560b5c62ecd37e8',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
         'dev' => true,
     ),
     'versions' => array(
-        'dan.chadwick/toolshed' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
-            'reference' => NULL,
+        'dan612/d7_analyzer' => array(
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'reference' => '2b916f508a97df32d3a8029c3560b5c62ecd37e8',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

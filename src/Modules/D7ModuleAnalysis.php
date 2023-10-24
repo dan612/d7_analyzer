@@ -1,6 +1,6 @@
 <?php
 
-namespace DanChadwick\Toolshed\Modules;
+namespace D7_analyzer\Modules;
 
 use GuzzleHttp\Client;
 use Symfony\Component\Process\Exception\ProcessFailedException;

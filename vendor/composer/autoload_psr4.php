@@ -30,5 +30,5 @@ return array(
     'GuzzleHttp\\' => array($vendorDir . '/guzzlehttp/guzzle/src'),
     'Drupal\\' => array($vendorDir . '/drupal/coder/coder_sniffer/Drupal'),
     'DrupalPractice\\' => array($vendorDir . '/drupal/coder/coder_sniffer/DrupalPractice'),
-    'DanChadwick\\Toolshed\\' => array($baseDir . '/src'),
+    'D7_analyzer\\' => array($baseDir . '/src'),
 );

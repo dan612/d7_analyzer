@@ -6,7 +6,7 @@ if (php_sapi_name() !== 'cli') {
 }
 require 'vendor/autoload.php';
 
-use DanChadwick\Toolshed\D7CodebaseAnalysis;
+use D7_analyzer\D7CodebaseAnalysis;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\Table;

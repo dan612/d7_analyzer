@@ -1,7 +1,7 @@
 <?php
 
 // src/Command/ScanThemeTemplatesCommand.php
-namespace DanChadwick\Toolshed\Command;
+namespace D7_analyzer\Command;
 
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;

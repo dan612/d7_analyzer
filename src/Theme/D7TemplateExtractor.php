@@ -1,6 +1,6 @@
 <?php
 
-namespace DanChadwick\Toolshed\Theme;
+namespace D7_analyzer\Theme;
 
 class D7TemplateExtractor {
   /**

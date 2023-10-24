@@ -1,10 +1,10 @@
 {
-    "name": "dan.chadwick/toolshed",
-    "description": "Various tools and things",
+    "name": "dan612/d7_analyzer",
+    "description": "D7 Site Analyzer",
     "type": "project",
     "autoload": {
         "psr-4": {
-            "DanChadwick\\Toolshed\\": "src/"
+            "D7_analyzer\\": "src/"
         }
     },
     "authors": [

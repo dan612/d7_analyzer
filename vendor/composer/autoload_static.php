@@ -59,7 +59,7 @@ class ComposerStaticInitcbdfb6b4d1af351b13a7d76e9249b9cd
         array (
             'Drupal\\' => 7,
             'DrupalPractice\\' => 15,
-            'DanChadwick\\Toolshed\\' => 21,
+            'D7_analyzer\\' => 12,
         ),
     );
 
@@ -161,7 +161,7 @@ class ComposerStaticInitcbdfb6b4d1af351b13a7d76e9249b9cd
         array (
             0 => __DIR__ . '/..' . '/drupal/coder/coder_sniffer/DrupalPractice',
         ),
-        'DanChadwick\\Toolshed\\' => 
+        'D7_analyzer\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',
         ),

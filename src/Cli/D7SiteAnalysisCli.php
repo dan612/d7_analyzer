@@ -1,6 +1,6 @@
 <?php
 
-namespace DanChadwick\Toolshed\Cli;
+namespace D7_analyzer\Cli;
 
 class D7SiteAnalysisCli {
 

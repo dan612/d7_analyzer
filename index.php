@@ -2,7 +2,7 @@
 
 require 'vendor/autoload.php';
 
-use DanChadwick\Toolshed\D7CodebaseAnalysis;
+use D7_analyzer\D7CodebaseAnalysis;
 use Twig\Loader\FilesystemLoader;
 use Twig\Environment;
 
