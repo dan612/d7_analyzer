@@ -31,7 +31,6 @@ class D7AnalysisReportCommand extends Command {
     $rows[] = ["Drush Version", $d7_analysis->getDrushVersion()];
     $rows[] = ["Multisite", $d7_analysis->isThisMultisite()];
     $rows[] = ["Install Profile", $d7_analysis->getInstallProfile()];
-//    $rows[] = new TableSeparator();
     $general_table->setRows($rows);
     $general_table->setHeaders(["Item", "Status"]);
     $general_table->render();
@@ -39,29 +38,48 @@ class D7AnalysisReportCommand extends Command {
 
     $theme_table = new Table($output);
     $theme_table->setHeaderTitle('Theme Information');
+    $theme_table->setHeaders(["Type", "Count"]);
     $theme_templates = $d7_analysis->scanForThemeTemplates();
     $rows = [];
+    $total_template_count = 0;
     foreach ($theme_templates as $type => $templates) {
       if ($type !== 'counts') {
         continue;
       }
       foreach ($templates as $template_type => $count) {
         $rows[] = [$template_type, $count];
+        $total_template_count += $count;
       }
     }
-    $theme_table->setHeaders(["Type", "Count"]);
+    $rows[] = new TableSeparator();
+    $rows[] = ['total', $total_template_count];
     $theme_table->setRows($rows);
     $theme_table->render();
     $output->writeln('');
+
+    $customization_table = new Table($output);
+    $customization_table->setHeaderTitle('Customizations');
+    $customization_table->setHeaders(["Module"]);
+    $custom_modules = $d7_analysis->scanForCustomModules(FALSE, FALSE);
+    $rows = [];
+    foreach ($custom_modules as $custom_module) {
+      $rows[] = [$custom_module];
+    }
+    $rows[] = new TableSeparator();
+    $rows[] = ['total custom modules', count($custom_modules)];
+    $customization_table->setRows($rows);
+    $customization_table->render();
+    $output->writeln('');
+
     return Command::SUCCESS;
   }
   // General information.
-    // Acquia Subscription Type
-    // Drupal core version
-    // Code Studio/Pipelines?
-    // Drush version
-    // Is this a multisite?
-    // Installation profile
+  // Acquia Subscription Type
+  // Drupal core version
+  // Code Studio/Pipelines?
+  // Drush version
+  // Is this a multisite?
+  // Installation profile
   // composer version?
   // number of patches
   // current php version

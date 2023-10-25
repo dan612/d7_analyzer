@@ -121,7 +121,7 @@ class D7CodebaseAnalysis {
   }
 
   public function isThisMultisite() {
-    return 'N';
+    return 'No';
   }
 
   public function getInstallProfile() {
