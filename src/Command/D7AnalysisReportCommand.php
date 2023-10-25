@@ -26,6 +26,14 @@ class D7AnalysisReportCommand extends Command {
     $project_config = file_get_contents('./config.yml');
     $config_yaml = Yaml::parse($project_config);
 
+    // Drush connection.
+    $drush_connector = new DrushConnector();
+    $drush_connector->setProjectRoot($config_yaml['drush_root']);
+    $drush_connector->setProjectUri($config_yaml['drush_uri']);
+    $drush_connector->setContainerName($config_yaml['container_name']);
+    $drush_connector->setCommand('st');
+    $drush_connector->run();
+
     // General information.
     $output->writeln('');
     $d7_analysis = new D7CodebaseAnalysis();
@@ -80,13 +88,6 @@ class D7AnalysisReportCommand extends Command {
     $customization_table->setRows($rows);
     $customization_table->render();
     $output->writeln('');
-
-    // See if drush can be run here.
-    $drush_connector = new DrushConnector();
-    $drush_connector->setProjectRoot($config_yaml['drush_root']);
-    $drush_connector->setProjectUri($config_yaml['drush_uri']);
-    $drush_connector->setCommand('st');
-    $drush_connector->run();
 
     return 1;
   }
