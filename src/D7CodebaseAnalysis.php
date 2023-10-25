@@ -111,4 +111,20 @@ class D7CodebaseAnalysis {
     }
     return $sniff_output;
   }
+
+  public function getDrupalVersion() {
+    return '7.9.8';
+  }
+
+  public function getDrushVersion() {
+    return '8.x';
+  }
+
+  public function isThisMultisite() {
+    return 'N';
+  }
+
+  public function getInstallProfile() {
+    return 'panopoly';
+  }
 }

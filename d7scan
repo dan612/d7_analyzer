@@ -7,55 +7,11 @@ if (php_sapi_name() !== 'cli') {
 error_reporting(E_ALL & ~E_DEPRECATED);
 require 'vendor/autoload.php';
 
-use D7_analyzer\D7CodebaseAnalysis;
+use D7_analyzer\Command\D7AnalysisReportCommand;
+use D7_analyzer\Command\ScanThemeTemplatesCommand;
 use Symfony\Component\Console\Application;
-use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Helper\Table;
-use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Process\Process;
 
 $cli = new Application();
-$cli->register('scan-theme-templates')
-  ->addArgument('type', InputArgument::OPTIONAL)
-  ->setAliases(['stt [<type>]'])
-  ->setDescription('Scans for all templates within custom theme.')
-  ->addUsage('scan-theme-templates node_templates')
-  ->setCode(function (InputInterface $input, OutputInterface $output): string {
-    $get_type = $input->getArgument('type') ?? FALSE;
-    $d7_analysis = new D7CodebaseAnalysis();
-    $theme_templates = $d7_analysis->scanForThemeTemplates();
-    $table = new Table($output);
-    $rows = [];
-    foreach ($theme_templates as $type => $templates) {
-      if ($type == 'counts') {
-        continue;
-      }
-      if ($get_type && $get_type == $type) {
-        foreach ($theme_templates[$type] as $template) {
-          $rows[] = [$type, $template];
-        }
-      }
-      elseif (!$get_type) {
-        foreach ($templates as $template) {
-          $rows[] = [$type, $template];
-        }
-      }
-    }
-    $table
-      ->setHeaders(['Type', 'Template'])
-      ->setRows($rows);
-    $table->render();
-    return Command::SUCCESS;
-  });
-
-$cli->register('launch-browser')
-  ->setCode(function (InputInterface $input, OutputInterface $output) {
-    $process = new Process(['php', '-S', '0.0.0.0:9999']);
-    $output->writeln('Server started at http://0.0.0.0:9999');
-    $output->writeln('Press CTRL+C to EXIT');
-    $process->run();
-  });
-
+$cli->add(new ScanThemeTemplatesCommand());
+$cli->add(new D7AnalysisReportCommand());
 $cli->run();
