@@ -15,7 +15,7 @@
     ],
     "require": {
         "symfony/yaml": "~2.7",
-        "guzzlehttp/guzzle": "^7.0",
+        "guzzlehttp/guzzle": "^6.0",
         "twig/twig": "*",
         "symfony/asset": "*",
         "symfony/process": "*",
