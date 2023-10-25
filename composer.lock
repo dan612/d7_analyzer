@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "30bbeac5fbd8aaef0671a0dd55fd4ca0",
+    "content-hash": "2d5cbac96ef4c6aebbb85847af3f6445",
     "packages": [
         {
             "name": "drush/drush",
