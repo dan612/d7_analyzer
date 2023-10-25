@@ -17,7 +17,7 @@ class DrushConnector {
   }
 
   public function setProjectUri($uri) {
-    $this->projectRoot = $uri;
+    $this->projectUri = $uri;
   }
 
   public function setCommand($cmd) {
