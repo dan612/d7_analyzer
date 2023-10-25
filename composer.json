@@ -21,7 +21,7 @@
         "symfony/process": "*",
         "symfony/filesystem": "*",
         "symfony/console": "*",
-        "drush/drush": "^8"
+        "drush/drush": "^8.4"
     },
     "require-dev": {
         "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
