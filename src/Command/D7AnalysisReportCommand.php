@@ -3,6 +3,7 @@
 // src/Command/ScanThemeTemplatesCommand.php
 namespace D7_analyzer\Command;
 
+use D7_analyzer\Connector\DrushConnector;
 use D7_analyzer\D7CodebaseAnalysis;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\TableSeparator;
@@ -79,6 +80,13 @@ class D7AnalysisReportCommand extends Command {
     $customization_table->setRows($rows);
     $customization_table->render();
     $output->writeln('');
+
+    // See if drush can be run here.
+    $drush_connector = new DrushConnector();
+    $drush_connector->setProjectRoot($config_yaml['drush_root']);
+    $drush_connector->setProjectUri($config_yaml['drush_uri']);
+    $drush_connector->setCommand('st');
+    $drush_connector->run();
 
     return 1;
   }
