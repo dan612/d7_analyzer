@@ -64,7 +64,6 @@ class D7AnalysisReportCommand extends Command {
     $theme_table->setRows($rows);
     $theme_table->render();
 
-
     // Customization information.
     $customization_table = new Table($output);
     $customization_table->setHeaderTitle('Custom Modules');
