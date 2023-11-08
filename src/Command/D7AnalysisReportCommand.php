@@ -5,6 +5,8 @@ namespace D7_analyzer\Command;
 
 use D7_analyzer\Connector\DrushConnector;
 use D7_analyzer\D7CodebaseAnalysis;
+use D7_analyzer\DataExtractor\DrushDataExtractor;
+use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\TableSeparator;
 use Symfony\Component\Console\Input\InputArgument;
@@ -26,16 +28,7 @@ class D7AnalysisReportCommand extends Command {
     $project_config = file_get_contents('./config.yml');
     $config_yaml = Yaml::parse($project_config);
 
-    // Drush connection.
-    $drush_connector = new DrushConnector();
-    $drush_connector->setProjectRoot($config_yaml['drush_root']);
-    $drush_connector->setProjectUri($config_yaml['drush_uri']);
-    $drush_connector->setContainerName($config_yaml['container_name']);
-    $drush_connector->setCommand('st');
-    $drush_connector->run();
-
     // General information.
-    $output->writeln('');
     $d7_analysis = new D7CodebaseAnalysis();
     $general_table = new Table($output);
     $general_table->setHeaderTitle('General Information');
@@ -49,7 +42,6 @@ class D7AnalysisReportCommand extends Command {
     $general_table->setRows($rows);
     $general_table->setHeaders(["Item", "Status"]);
     $general_table->render();
-    $output->writeln('');
 
     // Theme information.
     $theme_table = new Table($output);
@@ -71,13 +63,16 @@ class D7AnalysisReportCommand extends Command {
     $rows[] = ['total', $total_template_count];
     $theme_table->setRows($rows);
     $theme_table->render();
-    $output->writeln('');
+
 
     // Customization information.
     $customization_table = new Table($output);
-    $customization_table->setHeaderTitle('Customizations');
+    $customization_table->setHeaderTitle('Custom Modules');
     $customization_table->setHeaders(["Module"]);
     $should_update_custom_modules = $config_yaml['update_custom_modules'] ?? FALSE;
+    if ($should_update_custom_modules) {
+      $output->writeln("Updating custom module list, this takes some extra time\n");
+    }
     $custom_modules = $d7_analysis->scanForCustomModules(FALSE, $should_update_custom_modules);
     $rows = [];
     foreach ($custom_modules as $custom_module) {
@@ -88,7 +83,6 @@ class D7AnalysisReportCommand extends Command {
     $customization_table->setRows($rows);
     $customization_table->render();
     $output->writeln('');
-
     return 1;
   }
   // General information.

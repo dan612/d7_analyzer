@@ -48,7 +48,6 @@ class D7ModuleAnalysis {
    */
   public function getCustomModules($limit = FALSE) {
     $custom_modules = [];
-    //
     if ($limit) {
       $this->d7ModuleList = array_slice($this->d7ModuleList, 1, $limit);
     }

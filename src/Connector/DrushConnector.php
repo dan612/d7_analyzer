@@ -50,7 +50,7 @@ class DrushConnector {
 //    if (!$process->isSuccessful()) {
 //      throw new ProcessFailedException($process);
 //    }
-    echo $output;
+    return $output;
 
   }
 
