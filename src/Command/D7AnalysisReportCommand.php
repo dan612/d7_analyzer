@@ -3,13 +3,17 @@
 // src/Command/ScanThemeTemplatesCommand.php
 namespace D7_analyzer\Command;
 
+use D7_analyzer\Connector\DrushConnector;
 use D7_analyzer\D7CodebaseAnalysis;
+use D7_analyzer\DataExtractor\DrushDataExtractor;
+use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\TableSeparator;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Helper\Table;
+use Symfony\Component\Yaml\Yaml;
 
 class D7AnalysisReportCommand extends Command {
   protected static $defaultName = "d7-analysis-report";
@@ -20,7 +24,11 @@ class D7AnalysisReportCommand extends Command {
     ;
   }
   protected function execute(InputInterface $input, OutputInterface $output): int {
-    $output->writeln('');
+    // Load the project config.
+    $project_config = file_get_contents('./config.yml');
+    $config_yaml = Yaml::parse($project_config);
+
+    // General information.
     $d7_analysis = new D7CodebaseAnalysis();
     $general_table = new Table($output);
     $general_table->setHeaderTitle('General Information');
@@ -34,8 +42,8 @@ class D7AnalysisReportCommand extends Command {
     $general_table->setRows($rows);
     $general_table->setHeaders(["Item", "Status"]);
     $general_table->render();
-    $output->writeln('');
 
+    // Theme information.
     $theme_table = new Table($output);
     $theme_table->setHeaderTitle('Theme Information');
     $theme_table->setHeaders(["Type", "Count"]);
@@ -55,12 +63,17 @@ class D7AnalysisReportCommand extends Command {
     $rows[] = ['total', $total_template_count];
     $theme_table->setRows($rows);
     $theme_table->render();
-    $output->writeln('');
 
+
+    // Customization information.
     $customization_table = new Table($output);
-    $customization_table->setHeaderTitle('Customizations');
+    $customization_table->setHeaderTitle('Custom Modules');
     $customization_table->setHeaders(["Module"]);
-    $custom_modules = $d7_analysis->scanForCustomModules(FALSE, FALSE);
+    $should_update_custom_modules = $config_yaml['update_custom_modules'] ?? FALSE;
+    if ($should_update_custom_modules) {
+      $output->writeln("Updating custom module list, this takes some extra time\n");
+    }
+    $custom_modules = $d7_analysis->scanForCustomModules(FALSE, $should_update_custom_modules);
     $rows = [];
     foreach ($custom_modules as $custom_module) {
       $rows[] = [$custom_module];
@@ -70,8 +83,7 @@ class D7AnalysisReportCommand extends Command {
     $customization_table->setRows($rows);
     $customization_table->render();
     $output->writeln('');
-
-    return Command::SUCCESS;
+    return 1;
   }
   // General information.
   // Acquia Subscription Type
