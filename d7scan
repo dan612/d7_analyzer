@@ -9,9 +9,11 @@ require 'vendor/autoload.php';
 
 use D7_analyzer\Command\D7AnalysisReportCommand;
 use D7_analyzer\Command\ScanThemeTemplatesCommand;
+use D7_analyzer\Command\SetupCommand;
 use Symfony\Component\Console\Application;
 
 $cli = new Application();
+$cli->add(new SetupCommand());
 $cli->add(new ScanThemeTemplatesCommand());
 $cli->add(new D7AnalysisReportCommand());
 $cli->run();
