@@ -36,7 +36,19 @@ class SetupCommand extends Command {
     $this->fileSystem->copy($default_config_file, './config2.yml');
     $output->writeln("Copied default configuration to project root.");
     // Get default lando file.
-    
+    $default_lando_file = './assets/setup/default.lando.yml';
+    if ($this->fileSystem->exists('./.lando.yml')) {
+      $helper = $this->getHelper('question');
+      $question = new ConfirmationQuestion('Landofile file exists, really replace? (y/n) ', false);
+      if (!$helper->ask($input, $output, $question)) {
+        $output->writeln("Backing out.");
+        return 0;
+      }
+    }
+    $this->fileSystem->copy($default_lando_file, './.lando.yml');
+    $output->writeln("Copied default Landofile to project root.");
+    $output->writeln("Adjust the new config.yml and .lando.yml in the project root.");
+
     return 1;
   }
 }
