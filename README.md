@@ -3,7 +3,7 @@
 ```
 git clone <url_to_d7_codebase.git>
 ```
-3. Add this to your D7 project composer.json file in the repositories section:
+2. Add this to your D7 project composer.json file in the repositories section:
 ```
 "dan612/d7_analyzer": {
     "type": "vcs",

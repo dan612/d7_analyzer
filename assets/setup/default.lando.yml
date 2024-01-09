@@ -1,0 +1,33 @@
+name: <project_name>
+recipe: drupal7
+config:
+  webroot: docroot
+  xdebug: false
+  php: '8.1'
+services:
+  appserver:
+    build_as_root:
+      - rm -rf ./cli
+      - git clone git@github.com:acquia/cli.git && cd ./cli && composer install
+    overrides:
+      volumes:
+        - type: bind
+          source: "${LANDO_SSH_AUTH_SOCK:-/run/host-services/ssh-auth.sock}"
+          target: /run/host-services/ssh-auth.sock
+      environment:
+        DRUSH_OPTIONS_URI: "https://<project_name>.lndo.site/"
+        SSH_AUTH_SOCK: /run/host-services/ssh-auth.sock
+      cap_add:
+        - SYS_ADMIN
+tooling:
+  acli:
+    service: appserver
+    cmd: php ./cli/bin/acli
+  ssh-fix:
+    service: appserver
+    description: Fix ssh auth sock permission for MacOS users. Lando rebuild fixes the problem as well.
+    cmd: "/bin/chgrp www-data /run/host-services/ssh-auth.sock && /bin/chmod g+w /run/host-services/ssh-auth.sock"
+    user: root
+events:
+  post-start:
+    - appserver: test -e ~/.ssh/config || printf 'Host *\n  AddKeysToAgent yes\n' > ~/.ssh/config

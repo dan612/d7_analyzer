@@ -1,0 +1,12 @@
+# on your local system
+global_project_path: ''
+# from outside the container
+web_root: 'docroot'
+# this needs to be relative to /sites/all/themes
+d7_custom_theme: ''
+# regenerate custom modules files
+update_custom_modules: TRUE
+# settings for drush connector
+drush_root: '' # docroot path inside container
+drush_uri: '' # uri for D7 site
+container_name: '' # obtain from `docker container list`
